@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "34735094764",
+    "project_id": "citizensafe-437b0",
+    "storage_bucket": "citizensafe-437b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34735094764:android:19fc6e84d47618ec5c5ec9",
+        "android_client_info": {
+          "package_name": "com.ronitshetty.citizensafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc-0HKKS0hFgZ622w9auDnuHkqW_sXIm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

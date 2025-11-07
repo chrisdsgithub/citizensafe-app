@@ -1,0 +1,76 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function to check authentication
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper function to check if user is officer
+    function isOfficer() {
+      return isAuthenticated() && request.auth.token.role == 'officer';
+    }
+
+    // Helper function to check if user is citizen
+    function isCitizen() {
+      return isAuthenticated() && request.auth.token.role == 'citizen';
+    }
+
+    // --- Profile Pictures & Avatars ---
+    // Citizens and officers can upload their own profile pictures
+    match /profile_pictures/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // --- Officer Badges ---
+    // Officers can upload their own badge
+    match /officer_badges/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // --- Report Media ---
+    // Citizens can upload media for their reports
+    // Validate file size (max 10MB)
+    match /report_media/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && 
+                     request.auth.uid == userId && 
+                     request.resource.size < 10 * 1024 * 1024;
+    }
+
+    // --- Aadhaar Cards ---
+    // Citizens can upload their own aadhaar card for verification
+    // Validate file size (max 5MB)
+    match /aadhaar_cards/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      allow write: if isAuthenticated() && 
+                     request.auth.uid == userId && 
+                     request.resource.size < 5 * 1024 * 1024;
+    }
+
+    // --- Case Files ---
+    // Authenticated users can upload case-related files
+    match /case_files/{caseId}/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && 
+                     request.auth.uid == userId && 
+                     request.resource.size < 20 * 1024 * 1024;
+    }
+
+    // --- Chat Attachments ---
+    // Allow authenticated users to upload chat attachments
+    match /chat_attachments/{caseId}/{messageId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && 
+                     request.resource.size < 15 * 1024 * 1024;
+    }
+
+    // --- Default deny all other paths ---
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

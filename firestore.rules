@@ -1,0 +1,193 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- Helper Functions ---
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Read the requesting user's profile safely and check role.
+    // Use .exists() to avoid runtime errors if the profile is missing.
+    function isOfficer() {
+      return isAuthenticated()
+             && get(/databases/$(database)/documents/users/$(request.auth.uid)).exists()
+             && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'officer';
+    }
+
+    function isCitizen() {
+      return isAuthenticated()
+             && get(/databases/$(database)/documents/users/$(request.auth.uid)).exists()
+             && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'citizen';
+    }
+
+    // --- USERS Collection Rules ---
+    match /users/{userId} {
+      // Allow any authenticated user to read user profile documents.
+      // The CrimeFeed needs to read author names/avatars for display.
+      allow read: if isAuthenticated();
+
+      // Only the user themselves may create/update/delete their profile document.
+      allow create, update, delete: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // --- REPORTS Collection Rules ---
+    match /reports/{reportId} {
+      // Reports should be readable by the app. Allow authenticated reads so
+      // that citizens/officers can view the feed. If you want public access,
+      // change the condition to 'true'.
+      allow read: if isAuthenticated();
+
+      // CREATE: allow any authenticated user to create a report for themselves.
+      // This avoids requiring a 'role' field to be present on the user's doc.
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+
+      // ML-safe update: allow officers to update only a small set of ML result fields
+      function mlFields() {
+        return [
+          'riskLevelText',
+          'escalationRiskScore',
+          'potentialCrime',
+          'reasoning',
+          'mlUpdatedAt',
+          'is_fake',
+          'verification_confidence',
+          'verification_reasoning',
+          'verified_at',
+          'escalation_prediction',
+          'escalation_confidence',
+          'escalation_probabilities',
+          'escalation_reasoning',
+          'escalation_predicted_at'
+        ];
+      }
+
+      function onlyMlFieldsChanged() {
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(mlFields());
+      }
+
+      function mlFieldsValid() {
+        return (
+          // Basic type checks - all fields must be present and valid
+          (!request.resource.data.keys().hasAll(['riskLevelText']) || request.resource.data.riskLevelText is string) &&
+          (!request.resource.data.keys().hasAll(['escalationRiskScore']) || (request.resource.data.escalationRiskScore is number && request.resource.data.escalationRiskScore >= 0 && request.resource.data.escalationRiskScore <= 100)) &&
+          (!request.resource.data.keys().hasAll(['mlUpdatedAt']) || request.resource.data.mlUpdatedAt is timestamp) &&
+          // These fields can be null or string
+          (!request.resource.data.keys().hasAll(['potentialCrime']) || request.resource.data.potentialCrime == null || request.resource.data.potentialCrime is string) &&
+          (!request.resource.data.keys().hasAll(['reasoning']) || request.resource.data.reasoning == null || request.resource.data.reasoning is string) &&
+          // Verification fields validation
+          (!request.resource.data.keys().hasAll(['is_fake']) || request.resource.data.is_fake is bool) &&
+          (!request.resource.data.keys().hasAll(['verification_confidence']) || request.resource.data.verification_confidence is number) &&
+          (!request.resource.data.keys().hasAll(['verification_reasoning']) || request.resource.data.verification_reasoning == null || request.resource.data.verification_reasoning is string) &&
+          (!request.resource.data.keys().hasAll(['verified_at']) || request.resource.data.verified_at is timestamp) &&
+          // Escalation prediction fields validation
+          (!request.resource.data.keys().hasAll(['escalation_prediction']) || request.resource.data.escalation_prediction is string) &&
+          (!request.resource.data.keys().hasAll(['escalation_confidence']) || request.resource.data.escalation_confidence is number) &&
+          (!request.resource.data.keys().hasAll(['escalation_probabilities']) || request.resource.data.escalation_probabilities is map) &&
+          (!request.resource.data.keys().hasAll(['escalation_reasoning']) || request.resource.data.escalation_reasoning == null || request.resource.data.escalation_reasoning is string) &&
+          (!request.resource.data.keys().hasAll(['escalation_predicted_at']) || request.resource.data.escalation_predicted_at is timestamp)
+        );
+      }
+
+      // Allow officers to update the report status (but restrict which fields they can change)
+      function statusFields() {
+        return ['status', 'updatedBy', 'updatedAt'];
+      }
+
+      function onlyStatusFieldsChanged() {
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(statusFields());
+      }
+
+      function statusFieldsValid() {
+        return (
+          (request.resource.data.status in ['Pending', 'Investigating', 'Resolved']) &&
+          (request.resource.data.updatedBy is string) &&
+          (request.resource.data.updatedAt is timestamp) &&
+          (request.resource.data.updatedAt <= request.time)
+        );
+      }
+
+      // UPDATE: original creator may update; officers/any auth user may update ML fields OR update status/audit fields
+      // BACKEND SERVICE: Allow backend to update verification fields for any report
+      allow update: if isAuthenticated() && (
+        // original creator can update their own report (including ML fields)
+        (resource.data.userId == request.auth.uid && (onlyMlFieldsChanged() && mlFieldsValid()))
+        ||
+        // original creator can update status on their own report
+        (resource.data.userId == request.auth.uid && onlyStatusFieldsChanged() && statusFieldsValid())
+        ||
+        // officers may update ML result fields (validated) on any report
+        (isOfficer() && (onlyMlFieldsChanged() && mlFieldsValid()))
+        ||
+        // ANY AUTHENTICATED USER may update ML fields (prediction update) - validated
+        (onlyMlFieldsChanged() && mlFieldsValid())
+        ||
+        // any authenticated user can update status (validated)
+        (onlyStatusFieldsChanged() && statusFieldsValid())
+        ||
+        // Backend service can update verification fields only
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['is_fake', 'verification_confidence', 'verification_reasoning', 'verified_at']))
+      );
+
+      // DELETE: only original creator may delete a report (officers cannot delete)
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // --- FLAGGED REPORTS Collection Rules ---
+    match /flagged_reports/{reportId} {
+      // Allow authenticated users to read (officer screens will enforce access control)
+      // This avoids expensive get() calls in security rules
+      allow read: if isAuthenticated();
+
+      // Allow create/update/delete from anywhere (backend service account needs this)
+      // Security: Only backend server creates these, and officers access them
+      allow create, update, delete: if true;
+    }
+
+    // --- CRIME FEED Collection Rules ---
+    match /crimeFeed/{feedId} {
+      // Allow authenticated users to read crime feed posts
+      allow read: if isAuthenticated();
+
+      // Allow authenticated users to create crime feed posts
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+
+      // Allow users to update their own posts, officers can update any
+      allow update: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        isOfficer()
+      );
+
+      // Allow users to delete their own posts
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // --- CASES Collection Rules (for Officer Chat) ---
+    match /cases/{caseId} {
+      // Allow authenticated users to read cases where they are members
+      allow read: if isAuthenticated() && request.auth.uid in resource.data.members;
+
+      // Allow authenticated users to create cases
+      allow create: if isAuthenticated() && request.resource.data.createdBy == request.auth.uid && request.auth.uid in request.resource.data.members;
+
+      // Allow updates: creator can update members, anyone can update lastActivity
+      allow update: if isAuthenticated() && request.auth.uid in resource.data.members && (
+        // Creator can update members
+        (resource.data.createdBy == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members', 'lastActivity']))
+        ||
+        // Anyone can update lastActivity
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastActivity'])
+      );
+
+      // Allow creator to delete
+      allow delete: if isAuthenticated() && resource.data.createdBy == request.auth.uid;
+    }
+
+    // --- MESSAGES Subcollection Rules ---
+    match /cases/{caseId}/messages/{messageId} {
+      // Allow read/write if user is authenticated
+      // Security: client only queries messages for cases they can access
+      allow read, write: if isAuthenticated();
+    }
+  }
+}

@@ -1,0 +1,1730 @@
+⚠️  GEMINI_API_KEY not set. Crime prediction will use mock mode.
+Starting Flask server...
+Local development mode: DEV_SKIP_AUTH = True
+Mock mode (no PyTorch): False
+Server will be available at http://localhost:8080
+
+======================================================================
+Initializing Incident Escalation Prediction Service...
+======================================================================
+🔮 Loading Escalation Model on cpu...
+⏳ Escalation service initializing in background...
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.29.169:8080
+Press CTRL+C to quit
+✅ Escalation Model loaded successfully!
+   Model F1 Score: 1.0
+✅ Escalation service ready!
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: curl/8.7.1
+Accept: */*
+Content-Type: application/json
+Content-Length: 91
+---- /predict-crime-type RAW BODY ----
+{"description": "man stole my wallet", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: man stole my wallet...
+📍 Location: Mumbai
+🕒 Time: 14:30
+⏳ Loading crime type model...
+Non-strict load: missing_keys=['bert.embeddings.word_embeddings.weight', 'bert.embeddings.position_embeddings.weight', 'bert.embeddings.LayerNorm.weight', 'bert.embeddings.LayerNorm.bias', 'bert.transformer.layer.0.attention.q_lin.weight', 'bert.transformer.layer.0.attention.q_lin.bias', 'bert.transformer.layer.0.attention.k_lin.weight', 'bert.transformer.layer.0.attention.k_lin.bias', 'bert.transformer.layer.0.attention.v_lin.weight', 'bert.transformer.layer.0.attention.v_lin.bias', 'bert.transformer.layer.0.attention.out_lin.weight', 'bert.transformer.layer.0.attention.out_lin.bias', 'bert.transformer.layer.0.sa_layer_norm.weight', 'bert.transformer.layer.0.sa_layer_norm.bias', 'bert.transformer.layer.0.ffn.lin1.weight', 'bert.transformer.layer.0.ffn.lin1.bias', 'bert.transformer.layer.0.ffn.lin2.weight', 'bert.transformer.layer.0.ffn.lin2.bias', 'bert.transformer.layer.0.output_layer_norm.weight', 'bert.transformer.layer.0.output_layer_norm.bias', 'bert.transformer.layer.1.attention.q_lin.weight', 'bert.transformer.layer.1.attention.q_lin.bias', 'bert.transformer.layer.1.attention.k_lin.weight', 'bert.transformer.layer.1.attention.k_lin.bias', 'bert.transformer.layer.1.attention.v_lin.weight', 'bert.transformer.layer.1.attention.v_lin.bias', 'bert.transformer.layer.1.attention.out_lin.weight', 'bert.transformer.layer.1.attention.out_lin.bias', 'bert.transformer.layer.1.sa_layer_norm.weight', 'bert.transformer.layer.1.sa_layer_norm.bias', 'bert.transformer.layer.1.ffn.lin1.weight', 'bert.transformer.layer.1.ffn.lin1.bias', 'bert.transformer.layer.1.ffn.lin2.weight', 'bert.transformer.layer.1.ffn.lin2.bias', 'bert.transformer.layer.1.output_layer_norm.weight', 'bert.transformer.layer.1.output_layer_norm.bias', 'bert.transformer.layer.2.attention.q_lin.weight', 'bert.transformer.layer.2.attention.q_lin.bias', 'bert.transformer.layer.2.attention.k_lin.weight', 'bert.transformer.layer.2.attention.k_lin.bias', 'bert.transformer.layer.2.attention.v_lin.weight', 'bert.transformer.layer.2.attention.v_lin.bias', 'bert.transformer.layer.2.attention.out_lin.weight', 'bert.transformer.layer.2.attention.out_lin.bias', 'bert.transformer.layer.2.sa_layer_norm.weight', 'bert.transformer.layer.2.sa_layer_norm.bias', 'bert.transformer.layer.2.ffn.lin1.weight', 'bert.transformer.layer.2.ffn.lin1.bias', 'bert.transformer.layer.2.ffn.lin2.weight', 'bert.transformer.layer.2.ffn.lin2.bias', 'bert.transformer.layer.2.output_layer_norm.weight', 'bert.transformer.layer.2.output_layer_norm.bias', 'bert.transformer.layer.3.attention.q_lin.weight', 'bert.transformer.layer.3.attention.q_lin.bias', 'bert.transformer.layer.3.attention.k_lin.weight', 'bert.transformer.layer.3.attention.k_lin.bias', 'bert.transformer.layer.3.attention.v_lin.weight', 'bert.transformer.layer.3.attention.v_lin.bias', 'bert.transformer.layer.3.attention.out_lin.weight', 'bert.transformer.layer.3.attention.out_lin.bias', 'bert.transformer.layer.3.sa_layer_norm.weight', 'bert.transformer.layer.3.sa_layer_norm.bias', 'bert.transformer.layer.3.ffn.lin1.weight', 'bert.transformer.layer.3.ffn.lin1.bias', 'bert.transformer.layer.3.ffn.lin2.weight', 'bert.transformer.layer.3.ffn.lin2.bias', 'bert.transformer.layer.3.output_layer_norm.weight', 'bert.transformer.layer.3.output_layer_norm.bias', 'bert.transformer.layer.4.attention.q_lin.weight', 'bert.transformer.layer.4.attention.q_lin.bias', 'bert.transformer.layer.4.attention.k_lin.weight', 'bert.transformer.layer.4.attention.k_lin.bias', 'bert.transformer.layer.4.attention.v_lin.weight', 'bert.transformer.layer.4.attention.v_lin.bias', 'bert.transformer.layer.4.attention.out_lin.weight', 'bert.transformer.layer.4.attention.out_lin.bias', 'bert.transformer.layer.4.sa_layer_norm.weight', 'bert.transformer.layer.4.sa_layer_norm.bias', 'bert.transformer.layer.4.ffn.lin1.weight', 'bert.transformer.layer.4.ffn.lin1.bias', 'bert.transformer.layer.4.ffn.lin2.weight', 'bert.transformer.layer.4.ffn.lin2.bias', 'bert.transformer.layer.4.output_layer_norm.weight', 'bert.transformer.layer.4.output_layer_norm.bias', 'bert.transformer.layer.5.attention.q_lin.weight', 'bert.transformer.layer.5.attention.q_lin.bias', 'bert.transformer.layer.5.attention.k_lin.weight', 'bert.transformer.layer.5.attention.k_lin.bias', 'bert.transformer.layer.5.attention.v_lin.weight', 'bert.transformer.layer.5.attention.v_lin.bias', 'bert.transformer.layer.5.attention.out_lin.weight', 'bert.transformer.layer.5.attention.out_lin.bias', 'bert.transformer.layer.5.sa_layer_norm.weight', 'bert.transformer.layer.5.sa_layer_norm.bias', 'bert.transformer.layer.5.ffn.lin1.weight', 'bert.transformer.layer.5.ffn.lin1.bias', 'bert.transformer.layer.5.ffn.lin2.weight', 'bert.transformer.layer.5.ffn.lin2.bias', 'bert.transformer.layer.5.output_layer_norm.weight', 'bert.transformer.layer.5.output_layer_norm.bias', 'city_embedding.weight', 'part_of_day_embedding.weight', 'mlp.0.weight', 'mlp.0.bias', 'mlp.3.weight', 'mlp.3.bias', 'classifier.0.weight', 'classifier.0.bias', 'classifier.3.weight', 'classifier.3.bias', 'classifier.6.weight', 'classifier.6.bias'], unexpected_keys=['text_encoder.embeddings.word_embeddings.weight', 'text_encoder.embeddings.position_embeddings.weight', 'text_encoder.embeddings.token_type_embeddings.weight', 'text_encoder.embeddings.LayerNorm.weight', 'text_encoder.embeddings.LayerNorm.bias', 'text_encoder.encoder.layer.0.attention.self.query.weight', 'text_encoder.encoder.layer.0.attention.self.query.bias', 'text_encoder.encoder.layer.0.attention.self.key.weight', 'text_encoder.encoder.layer.0.attention.self.key.bias', 'text_encoder.encoder.layer.0.attention.self.value.weight', 'text_encoder.encoder.layer.0.attention.self.value.bias', 'text_encoder.encoder.layer.0.attention.output.dense.weight', 'text_encoder.encoder.layer.0.attention.output.dense.bias', 'text_encoder.encoder.layer.0.attention.output.LayerNorm.weight', 'text_encoder.encoder.layer.0.attention.output.LayerNorm.bias', 'text_encoder.encoder.layer.0.intermediate.dense.weight', 'text_encoder.encoder.layer.0.intermediate.dense.bias', 'text_encoder.encoder.layer.0.output.dense.weight', 'text_encoder.encoder.layer.0.output.dense.bias', 'text_encoder.encoder.layer.0.output.LayerNorm.weight', 'text_encoder.encoder.layer.0.output.LayerNorm.bias', 'text_encoder.encoder.layer.1.attention.self.query.weight', 'text_encoder.encoder.layer.1.attention.self.query.bias', 'text_encoder.encoder.layer.1.attention.self.key.weight', 'text_encoder.encoder.layer.1.attention.self.key.bias', 'text_encoder.encoder.layer.1.attention.self.value.weight', 'text_encoder.encoder.layer.1.attention.self.value.bias', 'text_encoder.encoder.layer.1.attention.output.dense.weight', 'text_encoder.encoder.layer.1.attention.output.dense.bias', 'text_encoder.encoder.layer.1.attention.output.LayerNorm.weight', 'text_encoder.encoder.layer.1.attention.output.LayerNorm.bias', 'text_encoder.encoder.layer.1.intermediate.dense.weight', 'text_encoder.encoder.layer.1.intermediate.dense.bias', 'text_encoder.encoder.layer.1.output.dense.weight', 'text_encoder.encoder.layer.1.output.dense.bias', 'text_encoder.encoder.layer.1.output.LayerNorm.weight', 'text_encoder.encoder.layer.1.output.LayerNorm.bias', 'text_encoder.encoder.layer.2.attention.self.query.weight', 'text_encoder.encoder.layer.2.attention.self.query.bias', 'text_encoder.encoder.layer.2.attention.self.key.weight', 'text_encoder.encoder.layer.2.attention.self.key.bias', 'text_encoder.encoder.layer.2.attention.self.value.weight', 'text_encoder.encoder.layer.2.attention.self.value.bias', 'text_encoder.encoder.layer.2.attention.output.dense.weight', 'text_encoder.encoder.layer.2.attention.output.dense.bias', 'text_encoder.encoder.layer.2.attention.output.LayerNorm.weight', 'text_encoder.encoder.layer.2.attention.output.LayerNorm.bias', 'text_encoder.encoder.layer.2.intermediate.dense.weight', 'text_encoder.encoder.layer.2.intermediate.dense.bias', 'text_encoder.encoder.layer.2.output.dense.weight', 'text_encoder.encoder.layer.2.output.dense.bias', 'text_encoder.encoder.layer.2.output.LayerNorm.weight', 'text_encoder.encoder.layer.2.output.LayerNorm.bias', 'text_encoder.encoder.layer.3.attention.self.query.weight', 'text_encoder.encoder.layer.3.attention.self.query.bias', 'text_encoder.encoder.layer.3.attention.self.key.weight', 'text_encoder.encoder.layer.3.attention.self.key.bias', 'text_encoder.encoder.layer.3.attention.self.value.weight', 'text_encoder.encoder.layer.3.attention.self.value.bias', 'text_encoder.encoder.layer.3.attention.output.dense.weight', 'text_encoder.encoder.layer.3.attention.output.dense.bias', 'text_encoder.encoder.layer.3.attention.output.LayerNorm.weight', 'text_encoder.encoder.layer.3.attention.output.LayerNorm.bias', 'text_encoder.encoder.layer.3.intermediate.dense.weight', 'text_encoder.encoder.layer.3.intermediate.dense.bias', 'text_encoder.encoder.layer.3.output.dense.weight', 'text_encoder.encoder.layer.3.output.dense.bias', 'text_encoder.encoder.layer.3.output.LayerNorm.weight', 'text_encoder.encoder.layer.3.output.LayerNorm.bias', 'text_encoder.encoder.layer.4.attention.self.query.weight', 'text_encoder.encoder.layer.4.attention.self.query.bias', 'text_encoder.encoder.layer.4.attention.self.key.weight', 'text_encoder.encoder.layer.4.attention.self.key.bias', 'text_encoder.encoder.layer.4.attention.self.value.weight', 'text_encoder.encoder.layer.4.attention.self.value.bias', 'text_encoder.encoder.layer.4.attention.output.dense.weight', 'text_encoder.encoder.layer.4.attention.output.dense.bias', 'text_encoder.encoder.layer.4.attention.output.LayerNorm.weight', 'text_encoder.encoder.layer.4.attention.output.LayerNorm.bias', 'text_encoder.encoder.layer.4.intermediate.dense.weight', 'text_encoder.encoder.layer.4.intermediate.dense.bias', 'text_encoder.encoder.layer.4.output.dense.weight', 'text_encoder.encoder.layer.4.output.dense.bias', 'text_encoder.encoder.layer.4.output.LayerNorm.weight', 'text_encoder.encoder.layer.4.output.LayerNorm.bias', 'text_encoder.encoder.layer.5.attention.self.query.weight', 'text_encoder.encoder.layer.5.attention.self.query.bias', 'text_encoder.encoder.layer.5.attention.self.key.weight', 'text_encoder.encoder.layer.5.attention.self.key.bias', 'text_encoder.encoder.layer.5.attention.self.value.weight', 'text_encoder.encoder.layer.5.attention.self.value.bias', 'text_encoder.encoder.layer.5.attention.output.dense.weight', 'text_encoder.encoder.layer.5.attention.output.dense.bias', 'text_encoder.encoder.layer.5.attention.output.LayerNorm.weight', 'text_encoder.encoder.layer.5.attention.output.LayerNorm.bias', 'text_encoder.encoder.layer.5.intermediate.dense.weight', 'text_encoder.encoder.layer.5.intermediate.dense.bias', 'text_encoder.encoder.layer.5.output.dense.weight', 'text_encoder.encoder.layer.5.output.dense.bias', 'text_encoder.encoder.layer.5.output.LayerNorm.weight', 'text_encoder.encoder.layer.5.output.LayerNorm.bias', 'text_encoder.pooler.dense.weight', 'text_encoder.pooler.dense.bias', 'location_emb.weight', 'sub_location_emb.weight', 'hour_emb.weight', 'part_of_day_emb.weight', 'day_of_week_emb.weight', 'month_emb.weight', 'cyclical_fc.weight', 'cyclical_fc.bias', 'aux_fc.weight', 'aux_fc.bias', 'text_proj.0.weight', 'text_proj.0.bias', 'text_proj.1.weight', 'text_proj.1.bias', 'spatial_temporal_fc.0.weight', 'spatial_temporal_fc.0.bias', 'spatial_temporal_fc.1.weight', 'spatial_temporal_fc.1.bias', 'spatial_temporal_fc.1.running_mean', 'spatial_temporal_fc.1.running_var', 'spatial_temporal_fc.1.num_batches_tracked', 'cross_attn.attention.in_proj_weight', 'cross_attn.attention.in_proj_bias', 'cross_attn.attention.out_proj.weight', 'cross_attn.attention.out_proj.bias', 'cross_attn.norm.weight', 'cross_attn.norm.bias', 'fusion_fc.0.weight', 'fusion_fc.0.bias', 'fusion_fc.1.weight', 'fusion_fc.1.bias', 'fusion_fc.1.running_mean', 'fusion_fc.1.running_var', 'fusion_fc.1.num_batches_tracked', 'classifier.weight', 'classifier.bias']127.0.0.1 - - [07/Nov/2025 01:16:27] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.97%
+   Probabilities (top 3):
+      Armed Robbery: 9.97%
+      Arson: 9.94%
+      Cybercrime: 9.49%
+⚠️ Theft keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 91
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "man stole my wallet", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: man stole my wallet...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.97%
+   Probabilities (top 3):
+      Armed Robbery: 9.97%
+      Arson: 9.94%
+      Cybercrime: 9.49%
+⚠️ Theft keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 93
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "man with guns at mall", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: man with guns at mall...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.87%
+   Probabilities (top 3):
+      Arson: 9.87%
+      Armed Robbery: 9.86%
+      Cybercrime: 9.44%
+⚠️ Weapon detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 96
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "child has been kidnapped", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: child has been kidnapped...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.92%
+   Probabilities (top 3):
+      Armed Robbery: 9.92%
+      Arson: 9.58%
+      Cybercrime: 9.51%
+🚨 Kidnapping keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 88
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "two men fighting", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: two men fighting...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.94%
+   Probabilities (top 3):
+      Armed Robbery: 9.94%
+      Arson: 9.90%
+      Cybercrime: 9.47%
+⚠️ Assault keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 95
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "broke into my apartment", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: broke into my apartment...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Arson: 9.98%
+      Armed Robbery: 9.97%
+      Cybercrime: 9.46%
+⚠️ Burglary keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 94
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "hacked my bank account", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: hacked my bank account...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.97%
+   Probabilities (top 3):
+      Arson: 9.97%
+      Armed Robbery: 9.89%
+      Cybercrime: 9.44%
+⚠️ Fraud keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 103
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "spray painted car with graffiti", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:28] "POST /predict-crime-type HTTP/1.1" 200 -
+
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: spray painted car with graffiti...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.03%
+   Probabilities (top 3):
+      Armed Robbery: 10.03%
+      Arson: 9.78%
+      Cybercrime: 9.42%
+⚠️ Vandalism keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 83
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "I was raped", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: I was raped...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Armed Robbery: 9.98%
+      Arson: 9.85%
+      Cybercrime: 9.46%
+🚨 Rape keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 93
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "sexually assaulted me", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: sexually assaulted me...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.01%
+   Probabilities (top 3):
+      Armed Robbery: 10.01%
+      Arson: 9.94%
+      Cybercrime: 9.53%
+🚨 Rape keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 95
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "sold me drugs illegally", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: sold me drugs illegally...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.94%
+   Probabilities (top 3):
+      Armed Robbery: 9.94%
+      Arson: 9.82%
+      Cybercrime: 9.30%
+⚠️ Drug keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 94
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "found narcotics nearby", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: found narcotics nearby...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.88%
+   Probabilities (top 3):
+      Armed Robbery: 9.88%
+      Arson: 9.88%
+      Burglary: 9.30%
+⚠️ Drug keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 92
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "set fire to building", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: set fire to building...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.17%
+   Probabilities (top 3):
+      Armed Robbery: 10.17%
+      Arson: 9.63%
+      Cybercrime: 9.38%
+⚠️ Arson keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 93
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "defrauded of my money", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: defrauded of my money...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.90%
+   Probabilities (top 3):
+      Armed Robbery: 9.90%
+      Arson: 9.90%
+      Cybercrime: 9.43%
+⚠️ Fraud keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 92
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "sexually harassed me", "location": "Mumbai", "time_of_occurrence": "14:30"}127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: sexually harassed me...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Armed Robbery: 9.98%
+      Arson: 9.93%
+      Cybercrime: 9.53%
+⚠️ Sexual harassment keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 149
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "I was at the mall and someone took my wallet from my bag without my knowledge", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: I was at the mall and someone took my wallet from my bag without my knowledge...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.93%
+   Probabilities (top 3):
+      Armed Robbery: 9.93%
+      Arson: 9.93%
+      Cybercrime: 9.36%
+⚠️ Theft keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 143
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "There was a man with a firearm threatening people and taking belongings", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: There was a man with a firearm threatening people and taking belongings...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.11%
+   Probabilities (top 3):
+      Armed Robbery: 10.11%
+      Arson: 9.78%
+      Cybercrime: 9.34%
+⚠️ Weapon + robbery detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 140
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "A group of kids went missing from school, they were taken by someone", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: A group of kids went missing from school, they were taken by someone...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.02%
+   Probabilities (top 3):
+      Armed Robbery: 10.02%
+      Arson: 9.56%
+      Cybercrime: 9.33%
+🚨 Kidnapping keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 124
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Two guys started punching each other outside the bar", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Two guys started punching each other outside the bar...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Arson: 9.98%
+      Armed Robbery: 9.88%
+      Cybercrime: 9.46%
+⚠️ Assault keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 124
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Someone broke into my apartment and took electronics", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Someone broke into my apartment and took electronics...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.93%
+   Probabilities (top 3):
+      Armed Robbery: 9.93%
+      Arson: 9.86%
+      Cybercrime: 9.38%
+⚠️ Burglary keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 132
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "My email was compromised and someone drained my bank account", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: My email was compromised and someone drained my bank account...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:29] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.90%
+   Probabilities (top 3):
+      Armed Robbery: 9.90%
+      Arson: 9.89%
+      Cybercrime: 9.42%
+⚠️ Fraud keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 113
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Someone threw paint on the building walls", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Someone threw paint on the building walls...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.91%
+   Probabilities (top 3):
+      Armed Robbery: 9.91%
+      Arson: 9.89%
+      Cybercrime: 9.40%
+⚠️ Vandalism keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 116
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "A woman was forced by a man against her will", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: A woman was forced by a man against her will...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.99%
+   Probabilities (top 3):
+      Armed Robbery: 9.99%
+      Arson: 9.84%
+      Cybercrime: 9.54%
+🚨 Rape keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 113
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Someone offering white powder near school", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Someone offering white powder near school...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.00%
+   Probabilities (top 3):
+      Armed Robbery: 10.00%
+      Arson: 9.88%
+      Cybercrime: 9.42%
+⚠️ Drug keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 107
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Explosion and fire in the warehouse", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Explosion and fire in the warehouse...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.01%
+   Probabilities (top 3):
+      Armed Robbery: 10.01%
+      Arson: 9.78%
+      Cybercrime: 9.44%
+⚠️ Arson keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 91
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "man stole my wallet", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: man stole my wallet...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.97%
+   Probabilities (top 3):
+      Armed Robbery: 9.97%
+      Arson: 9.94%
+      Cybercrime: 9.49%
+⚠️ Theft keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 93
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "man with guns at mall", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: man with guns at mall...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.87%
+   Probabilities (top 3):
+      Arson: 9.87%
+      Armed Robbery: 9.86%
+      Cybercrime: 9.44%
+⚠️ Weapon detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 96
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "child has been kidnapped", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: child has been kidnapped...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.92%
+   Probabilities (top 3):
+      Armed Robbery: 9.92%
+      Arson: 9.58%
+      Cybercrime: 9.51%
+🚨 Kidnapping keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 88
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "two men fighting", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: two men fighting...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.94%
+   Probabilities (top 3):
+      Armed Robbery: 9.94%
+      Arson: 9.90%
+      Cybercrime: 9.47%
+⚠️ Assault keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 95
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "broke into my apartment", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: broke into my apartment...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Arson: 9.98%
+      Armed Robbery: 9.97%
+      Cybercrime: 9.46%
+⚠️ Burglary keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 94
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "hacked my bank account", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: hacked my bank account...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.97%
+   Probabilities (top 3):
+      Arson: 9.97%
+      Armed Robbery: 9.89%
+      Cybercrime: 9.44%
+⚠️ Fraud keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 103
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "spray painted car with graffiti", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: spray painted car with graffiti...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.03%
+   Probabilities (top 3):
+      Armed Robbery: 10.03%
+      Arson: 9.78%
+      Cybercrime: 9.42%
+⚠️ Vandalism keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 83
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "I was raped", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: I was raped...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Armed Robbery: 9.98%
+      Arson: 9.85%
+      Cybercrime: 9.46%
+🚨 Rape keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 93
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "sexually assaulted me", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: sexually assaulted me...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.01%
+   Probabilities (top 3):
+      Armed Robbery: 10.01%
+      Arson: 9.94%
+      Cybercrime: 9.53%
+🚨 Rape keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 95
+Content-Type: application/json127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:43] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+
+---- /predict-crime-type RAW BODY ----
+{"description": "sold me drugs illegally", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: sold me drugs illegally...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.94%
+   Probabilities (top 3):
+      Armed Robbery: 9.94%
+      Arson: 9.82%
+      Cybercrime: 9.30%
+⚠️ Drug keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 94
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "found narcotics nearby", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: found narcotics nearby...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.88%
+   Probabilities (top 3):
+      Armed Robbery: 9.88%
+      Arson: 9.88%
+      Burglary: 9.30%
+⚠️ Drug keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 92
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "set fire to building", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: set fire to building...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.17%
+   Probabilities (top 3):
+      Armed Robbery: 10.17%
+      Arson: 9.63%
+      Cybercrime: 9.38%
+⚠️ Arson keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 93
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "defrauded of my money", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: defrauded of my money...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.90%
+   Probabilities (top 3):
+      Armed Robbery: 9.90%
+      Arson: 9.90%
+      Cybercrime: 9.43%
+⚠️ Fraud keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 92
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "sexually harassed me", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: sexually harassed me...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Armed Robbery: 9.98%
+      Arson: 9.93%
+      Cybercrime: 9.53%
+⚠️ Sexual harassment keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 149
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "I was at the mall and someone took my wallet from my bag without my knowledge", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: I was at the mall and someone took my wallet from my bag without my knowledge...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.93%
+   Probabilities (top 3):
+      Armed Robbery: 9.93%
+      Arson: 9.93%
+      Cybercrime: 9.36%
+⚠️ Theft keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 143
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "There was a man with a firearm threatening people and taking belongings", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: There was a man with a firearm threatening people and taking belongings...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.11%
+   Probabilities (top 3):127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+
+      Armed Robbery: 10.11%
+      Arson: 9.78%
+      Cybercrime: 9.34%
+⚠️ Weapon + robbery detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 140
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "A group of kids went missing from school, they were taken by someone", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: A group of kids went missing from school, they were taken by someone...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 10.02%
+   Probabilities (top 3):
+      Armed Robbery: 10.02%
+      Arson: 9.56%
+      Cybercrime: 9.33%
+🚨 Kidnapping keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 124
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Two guys started punching each other outside the bar", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Two guys started punching each other outside the bar...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Arson
+   Confidence: 9.98%
+   Probabilities (top 3):
+      Arson: 9.98%
+      Armed Robbery: 9.88%
+      Cybercrime: 9.46%
+⚠️ Assault keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 124
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Someone broke into my apartment and took electronics", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Someone broke into my apartment and took electronics...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.93%
+   Probabilities (top 3):
+      Armed Robbery: 9.93%
+      Arson: 9.86%
+      Cybercrime: 9.38%
+⚠️ Burglary keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 132
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "My email was compromised and someone drained my bank account", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: My email was compromised and someone drained my bank account...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.90%
+   Probabilities (top 3):
+      Armed Robbery: 9.90%
+      Arson: 9.89%
+      Cybercrime: 9.42%
+⚠️ Fraud keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 113
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Someone threw paint on the building walls", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: Someone threw paint on the building walls...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.91%
+   Probabilities (top 3):
+      Armed Robbery: 9.91%
+      Arson: 9.89%
+      Cybercrime: 9.40%
+⚠️ Vandalism keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 116
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "A woman was forced by a man against her will", "location": "Mumbai", "time_of_occurrence": "14:30"}
+---- END DEBUG ----
+📥 Received keys: ['description', 'location', 'time_of_occurrence']
+
+======================================================================
+📊 /predict-crime-type request received
+======================================================================
+📝 Description: A woman was forced by a man against her will...
+📍 Location: Mumbai
+🕒 Time: 14:30
+☀️  Part of Day: Afternoon
+⚠️  Location 'Mumbai' not in training data, using default (0)
+✅ Part of day encoded: Afternoon -> 0
+✅ Text tokenized: torch.Size([1, 128])
+
+🎯 Prediction Result:
+   Crime Type: Armed Robbery
+   Confidence: 9.99%
+   Probabilities (top 3):
+      Armed Robbery: 9.99%
+      Arson: 9.84%
+      Cybercrime: 9.54%
+🚨 Rape keywords detected
+✅ Crime type prediction complete
+======================================================================
+
+---- /predict-crime-type DEBUG HEADERS ----
+Host: 127.0.0.1:8080
+User-Agent: python-requests/2.31.0
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 113
+Content-Type: application/json
+---- /predict-crime-type RAW BODY ----
+{"description": "Someone offering white powder near school", "location": "Mumbai", "time_of_occurrence": "14:30"}127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:18:44] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:20:31] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:20:31] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:20:31] "POST /predict-crime-type HTTP/1.1" 200 -
+127.0.0.1 - - [07/Nov/2025 01:20:31] "POST /predict-crime-type HTTP/1.1" 200 -
